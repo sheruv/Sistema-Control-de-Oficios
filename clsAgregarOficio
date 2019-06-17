@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace ControlOficiosWeb.Clases
+{
+    public class ControlOficios
+    {
+        public DateTime fechaInicio { set; get; }
+        public string numOficio { set; get; }
+        public string nombre { set; get; }
+        public string descripcion { set; get; }
+        public string destinatario { set; get; }
+        public string usuario { set; get; }
+        public DateTime fechaVence { set; get; }
+        public string estado { set; get; }
+
+        public ControlOficios()
+        {
+            fechaInicio = DateTime.Now.Date;
+            numOficio = "";
+            nombre = "";
+            descripcion = "";
+            destinatario = "";
+            usuario = "";
+            fechaVence = new DateTime(0001, 01, 1);
+            estado = "";
+        }
+
+        public ControlOficios(string numOf, string nom, string descrip, string dest, string usua)
+        {
+            fechaInicio = DateTime.Now.Date;
+            numOficio = numOf;
+            nombre = nom;
+            descripcion = descrip;
+            destinatario = dest;
+            usuario = usua;
+            fechaVence = new DateTime(0001, 01, 1);
+            estado = "";
+        }
+    }
+}
