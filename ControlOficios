@@ -15,6 +15,7 @@ namespace ControlOficiosWeb.Clases
         public string usuario { set; get; }
         public DateTime fechaVence { set; get; }
         public string estado { set; get; }
+        public DateTime fechaModifica { set; get; }
 
         public ControlOficios()
         {
@@ -38,6 +39,14 @@ namespace ControlOficiosWeb.Clases
             usuario = usua;
             fechaVence = new DateTime(0001, 01, 1);
             estado = "";
+        }
+
+        public void AgregarOficio()
+        {
+        }
+
+        public void ModificarOficio()
+        {
         }
     }
 }
