@@ -1,16 +1,10 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModificarOficio.aspx.cs" Inherits="ControlOficiosWeb.Formularios.ModificarOficio" %>
+<%@ Page Title="Modifcar" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ModificarOficio.aspx.cs" Inherits="ControlOficiosWeb.Formularios.ModificarOficio" %>
 
-<!DOCTYPE html>
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div dir="auto">
-            <center><asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Names="Verdana" Font-Size="XX-Large" Font-Strikeout="False" ForeColor="#0033CC" Text="Modificar Oficio"></asp:Label></center>
+    <center>
+        <br />
+        <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Names="Verdana" Font-Size="XX-Large" Font-Strikeout="False" ForeColor="#0033CC" Text="Modificar Oficio"></asp:Label></center>
             <br />
             <asp:Label ID="lblFechaInicio" runat="server" Text="Fecha Modificación:"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblFechaModificacion" runat="server" Text="--/--/----"></asp:Label>
@@ -24,6 +18,12 @@
             <asp:Label ID="Label5" runat="server" Text="Número de Oficio:"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtNumOficio" runat="server"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label ID="Label7" runat="server" Text="Categoría:"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:DropDownList ID="ddlCategoria" runat="server">
+            </asp:DropDownList>
             <br />
             <br />
             Nombre:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="txtNombre" runat="server" Width="381px"></asp:TextBox>
@@ -54,8 +54,11 @@
             <br />
             <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnModificar" runat="server" style="margin-left: 0px" Text="Modificar" Width="137px" />
+            <asp:Button ID="btnModificar" runat="server" CssClass="btn btn-primary" style="margin-left: 0px" Text="Modificar" Width="137px" />
         </div>
-    </form>
-</body>
-</html>
+
+    <br />
+
+    <br />
+
+</asp:Content>
