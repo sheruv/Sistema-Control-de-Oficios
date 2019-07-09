@@ -1,0 +1,42 @@
+<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ControlOficiosWeb._Default" %>
+
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
+    <div class="jumbotron">
+        <h1>Control de Oficios</h1>
+        <p class="lead">Este sistema te ayudará con el debido proceso de manipulación de 
+            oficios llevado a cabo en el departamento de Inspeccion General de la Municipalidad de Escazú</p>
+        <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Oficios Registrados</h2>
+            <p>
+                Verificar el listado completo de los oficios registrados al dia de hoy.
+            </p>
+            <p>
+                <a class="btn btn-primary" href="Formularios/RevisarOficio.aspx">Verificar &raquo;</a>
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>Agregar Oficio</h2>
+            <p>
+                Cree un oficio y agregue su informacion a la base de datos del sistema.
+            </p>
+            <p>
+                <a class="btn btn-primary" href="Formularios/AgregarOficio.aspx">Agregar &raquo;</a>
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>Modificar Oficio</h2>
+            <p>
+                Modifique cierta información de oficios previamente agregados.
+            </p>
+            <p>
+                <a class="btn btn-primary" href="Formularios/ModificarOficio.aspx">Modificar &raquo;</a>
+            </p>
+        </div>
+    </div>
+
+</asp:Content>
