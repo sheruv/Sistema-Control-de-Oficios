@@ -1,0 +1,18 @@
+<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RevisarOficio.aspx.cs" Inherits="ControlOficiosWeb.Formularios.RevisarOficio" %>
+
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
+    <div>
+        <center><h1 style="color: #0033CC; font-weight: bold;">Listado de Oficios Registrados</h1></center>            
+    </div>
+    <div>
+        <asp:GridView ID="grListado" runat="server">
+        </asp:GridView>                
+        <br />                
+        <center>
+            <asp:Button ID="btnRevisar" CssClass="btn btn-primary" runat="server" Text="Revisar" />
+        </center>
+        <br />
+        <br />
+    </div>    
+</asp:Content>
