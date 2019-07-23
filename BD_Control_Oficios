@@ -1,0 +1,340 @@
+USE [master]
+GO
+/****** Object:  Database [BD_Control_Oficios]    Script Date: 22/7/2019 7:46:20 p. m. ******/
+CREATE DATABASE [BD_Control_Oficios]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'BD_Control_Oficios', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\BD_Control_Oficios.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'BD_Control_Oficios_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\BD_Control_Oficios_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+ALTER DATABASE [BD_Control_Oficios] SET COMPATIBILITY_LEVEL = 150
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [BD_Control_Oficios].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [BD_Control_Oficios] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET RECOVERY FULL 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET  MULTI_USER 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [BD_Control_Oficios] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [BD_Control_Oficios] SET DELAYED_DURABILITY = DISABLED 
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'BD_Control_Oficios', N'ON'
+GO
+ALTER DATABASE [BD_Control_Oficios] SET QUERY_STORE = OFF
+GO
+USE [BD_Control_Oficios]
+GO
+/****** Object:  UserDefinedFunction [dbo].[Fn_Siguiente_Codigo]    Script Date: 22/7/2019 7:46:21 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date, ,>
+-- Description:	<Description, ,>
+-- =============================================
+CREATE FUNCTION [dbo].[Fn_Siguiente_Codigo]  
+(
+	--Parametros
+	@Tabla varchar(100)
+	
+)
+RETURNS int
+AS
+BEGIN
+	
+	DECLARE
+		@Resultado int
+
+		SET @Resultado = CASE @Tabla
+							WHEN 'Tipo_Usuario' THEN (SELECT MAX(Id_Tipo_Usuario) + 1 FROM Tipo_Usuario)
+							WHEN 'Categoria' THEN (SELECT MAX(Id_Categoria) +1 FROM Categoria)
+							WHEN 'Usuario' THEN (SELECT MAX(Id_Usuario) + 1 FROM Usuario)
+							WHEN 'Estado' THEN (SELECT MAX(Id_Estado) + 1 FROM Estado)
+							END
+
+		IF @Resultado IS NULL
+			SET @Resultado = 1
+
+	RETURN @Resultado
+
+END
+
+GO
+/****** Object:  Table [dbo].[Categoria]    Script Date: 22/7/2019 7:46:21 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Categoria](
+	[Id_Categoria] [int] NOT NULL,
+	[Nom_Categoria] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_Categoria] PRIMARY KEY CLUSTERED 
+(
+	[Id_Categoria] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Control_Oficio]    Script Date: 22/7/2019 7:46:22 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Control_Oficio](
+	[Id_Oficio] [varchar](50) NOT NULL,
+	[Id_Usuario] [int] NOT NULL,
+	[Id_Estado] [int] NOT NULL,
+	[Id_Categoria] [int] NOT NULL,
+	[Nombre] [varchar](50) NOT NULL,
+	[Descripcion] [varchar](50) NOT NULL,
+	[Destinatario] [varchar](50) NOT NULL,
+	[Fecha_Inicio] [datetime] NOT NULL,
+	[Fecha_Vence] [datetime] NOT NULL,
+ CONSTRAINT [PK_Control_Oficio] PRIMARY KEY CLUSTERED 
+(
+	[Id_Oficio] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Estado]    Script Date: 22/7/2019 7:46:22 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Estado](
+	[Id_Estado] [int] NOT NULL,
+	[Nom_Estado] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_Estado] PRIMARY KEY CLUSTERED 
+(
+	[Id_Estado] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Tipo_Usuario]    Script Date: 22/7/2019 7:46:22 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Tipo_Usuario](
+	[Id_Tipo_Usuario] [int] NOT NULL,
+	[Nom_Tipo_Usuario] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_Tipo_Usuario] PRIMARY KEY CLUSTERED 
+(
+	[Id_Tipo_Usuario] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Usuario]    Script Date: 22/7/2019 7:46:22 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Usuario](
+	[Id_Usuario] [int] NOT NULL,
+	[Id_Tipo_Usuario] [int] NOT NULL,
+	[Nombre] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_Usuario] PRIMARY KEY CLUSTERED 
+(
+	[Id_Usuario] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Control_Oficio]  WITH CHECK ADD  CONSTRAINT [FK_Control_Oficio_Categoria] FOREIGN KEY([Id_Categoria])
+REFERENCES [dbo].[Categoria] ([Id_Categoria])
+GO
+ALTER TABLE [dbo].[Control_Oficio] CHECK CONSTRAINT [FK_Control_Oficio_Categoria]
+GO
+ALTER TABLE [dbo].[Control_Oficio]  WITH CHECK ADD  CONSTRAINT [FK_Control_Oficio_Estado] FOREIGN KEY([Id_Estado])
+REFERENCES [dbo].[Estado] ([Id_Estado])
+GO
+ALTER TABLE [dbo].[Control_Oficio] CHECK CONSTRAINT [FK_Control_Oficio_Estado]
+GO
+ALTER TABLE [dbo].[Control_Oficio]  WITH CHECK ADD  CONSTRAINT [FK_Control_Oficio_Usuario] FOREIGN KEY([Id_Usuario])
+REFERENCES [dbo].[Usuario] ([Id_Usuario])
+GO
+ALTER TABLE [dbo].[Control_Oficio] CHECK CONSTRAINT [FK_Control_Oficio_Usuario]
+GO
+ALTER TABLE [dbo].[Usuario]  WITH CHECK ADD  CONSTRAINT [FK_Tipo_Usuario_Usuario] FOREIGN KEY([Id_Tipo_Usuario])
+REFERENCES [dbo].[Tipo_Usuario] ([Id_Tipo_Usuario])
+GO
+ALTER TABLE [dbo].[Usuario] CHECK CONSTRAINT [FK_Tipo_Usuario_Usuario]
+GO
+/****** Object:  StoredProcedure [dbo].[Pa_Categoria_INSERT]    Script Date: 22/7/2019 7:46:22 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Pa_Categoria_INSERT] 
+	
+	--Parametros.
+	@Id_Categoria int,
+	@Nom_Categoria varchar(50)
+
+AS
+BEGIN
+	BEGIN TRANSACTION
+
+	SET
+		@Id_Categoria = (SELECT dbo.Fn_Siguiente_Codigo('Categoria'))
+	SET
+		@Nom_Categoria = (SELECT Nom_Categoria FROM Categoria)
+				
+	INSERT INTO Tipo_Usuario VALUES(@Id_Categoria, @Nom_Categoria)
+
+	IF @@ERROR = 0
+		BEGIN
+		COMMIT TRANSACTION
+		SELECT 'Registro ingresado correctamente'
+		END
+	ELSE
+		BEGIN
+		ROLLBACK TRANSACTION
+		SELECT 'ERROR, Verifique los datos'
+		END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[Pa_Estado_INSERT]    Script Date: 22/7/2019 7:46:22 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Pa_Estado_INSERT] 
+	
+	--Parametros.
+	@Id_Estado int,
+	@Nom_Estado varchar(50)
+
+AS
+BEGIN
+	BEGIN TRANSACTION
+
+	SET
+		@Id_Estado = (SELECT dbo.Fn_Siguiente_Codigo('Estado'))
+	SET
+		@Nom_Estado = (SELECT Nom_Estado FROM Estado)
+				
+	INSERT INTO Tipo_Usuario VALUES(@Id_Estado, @Nom_Estado)
+
+	IF @@ERROR = 0
+		BEGIN
+		COMMIT TRANSACTION
+		SELECT 'Registro ingresado correctamente'
+		END
+	ELSE
+		BEGIN
+		ROLLBACK TRANSACTION
+		SELECT 'ERROR, Verifique los datos'
+		END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[Pa_TipoUsuario_INSERT]    Script Date: 22/7/2019 7:46:22 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Pa_TipoUsuario_INSERT] 
+	
+	--Parametros.
+	@Id_Tipo_Usuario int,
+	@Nom_Tipo_Usuario varchar(50)
+
+AS
+BEGIN
+	BEGIN TRANSACTION
+
+	SET
+		@Id_Tipo_Usuario = (SELECT dbo.Fn_Siguiente_Codigo('Tipo_Usuario'))
+	SET
+		@Nom_Tipo_Usuario = (SELECT Nom_Tipo_Usuario FROM Tipo_Usuario)
+				
+	INSERT INTO Tipo_Usuario VALUES(@Id_Tipo_Usuario, @Nom_Tipo_Usuario)
+
+	IF @@ERROR = 0
+		BEGIN
+		COMMIT TRANSACTION
+		SELECT 'Registro ingresado correctamente'
+		END
+	ELSE
+		BEGIN
+		ROLLBACK TRANSACTION
+		SELECT 'ERROR, Verifique los datos'
+		END
+END
+GO
+USE [master]
+GO
+ALTER DATABASE [BD_Control_Oficios] SET  READ_WRITE 
+GO
+
