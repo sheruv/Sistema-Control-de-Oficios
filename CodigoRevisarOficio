@@ -1,0 +1,51 @@
+using ControlOficiosWeb.ModelosBD;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace ControlOficiosWeb.Formularios
+{
+    public partial class RevisarOficio : System.Web.UI.Page
+    {
+        BD_Control_OficiosEntities modeloBD = new BD_Control_OficiosEntities();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            //Si es la primera vez que carga la página
+            //cargue el grid con todos los registros.
+            if (!IsPostBack)
+            {
+                CargarGrid();
+            }
+        }
+
+        protected void btnRevisar_Click(object sender, EventArgs e)
+        {
+            CargarGrid();
+        }
+
+        void CargarGrid()
+        {
+            ///Invocar procedimiento almacenado.
+            List<Pa_Control_Oficio_SELECT_Result> resultadoProcedimiento =
+                this.modeloBD.Pa_Control_Oficio_SELECT(
+                    this.txtCodigoOficio.Text.Trim()).ToList();
+
+            ///Asignarle al grid su fuente de datos.
+            this.grListado.DataSource = resultadoProcedimiento;
+
+            ///Indicarle al grid que "se muestre".
+            this.grListado.DataBind();
+        }
+
+        protected void grListado_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            ///Establecer nueva página del grid.
+            this.grListado.PageIndex = e.NewPageIndex;
+            this.CargarGrid();
+        }
+    }
+}
