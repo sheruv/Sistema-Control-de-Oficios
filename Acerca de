@@ -1,0 +1,10 @@
+<%@ Page Title="About" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="ControlOficiosWeb.About" %>
+
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <h2><%: Title %>.</h2>
+    <h3>Sistema de control de oficios municipales</h3>
+    <p>Una software desarrollado para solventar la necesidad de ordenar y llevar un registro
+        de cada tramite desarrollado principalmente por el departamento de Inspeccion General
+        de la Municipalidad de Escazú.
+    </p>
+</asp:Content>
