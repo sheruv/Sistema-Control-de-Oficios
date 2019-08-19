@@ -1,0 +1,17 @@
+<%@ Page Title="Contact" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="ControlOficiosWeb.Contact" %>
+
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <h2><%: Title %>.</h2>
+    <h3>Para mas informacion:</h3>
+    <address>
+        San Jose, Costa Rica<br />
+        Universidad Castro Carazo<br />
+        <abbr title="Phone">P:</abbr>
+        2506-1895
+    </address>
+
+    <address>
+        <strong>Support:</strong>   <a href="shermanuv@hotmail.com">shermanuv@hotmail.com</a><br />
+        <strong>Marketing:</strong> <a href="mbrenesq@outlook.com">mbrenesq@outlook.com</a>
+    </address>
+</asp:Content>
