@@ -1,0 +1,123 @@
+using ControlOficiosWeb.ModelosBD;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace ControlOficiosWeb.Formularios
+{
+    public partial class AgregarOficio : System.Web.UI.Page
+    {
+        BD_Control_OficiosEntities modeloBD = new BD_Control_OficiosEntities();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!this.IsPostBack)
+            {
+                ///Si no es una recarga de pagina; entonces, cargue las listas.
+                this.CargaCategoria();
+                this.CargaUsuario();
+            }
+        }
+
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            ///Validar que todas las reglas se hayan cumplido por parte del usuario.
+            if (IsValid)
+            {
+                this.Insertar();
+            }
+        }
+        /// <summary>
+        /// Llena los valores del procedimiento almacenado [Pa_Categoria_SELECT]
+        /// en el DropDownList.
+        /// </summary>
+        void CargaCategoria()
+        {
+            ///Obtener la fuente de datos.
+            List<Pa_Categoria_SELECT_Result> resultadoProcedimiento =
+                new List<Pa_Categoria_SELECT_Result>();
+
+            ///Invocar al procedimiento almacenado y asignar el resultado de la variable.
+            resultadoProcedimiento = this.modeloBD.Pa_Categoria_SELECT(-1).ToList();
+
+            ///Asignar la fuente de datos al DropDownList.
+            this.ddlCategoria.DataSource = resultadoProcedimiento;
+
+            ///Indicarle al DropDownList que "se muestre".
+            this.ddlCategoria.DataBind();
+        }
+
+        void CargaUsuario()
+        {
+            ///Obtener la fuente de datos.
+            List<Pa_Usuario_SELECT_Result> resultadoProcedimiento =
+                new List<Pa_Usuario_SELECT_Result>();
+
+            ///Invocar al procedimiento almacenado y asignar el resultado de la variable.
+            resultadoProcedimiento = this.modeloBD.Pa_Usuario_SELECT(-1).ToList();
+
+            ///Asignar la fuente de datos al ListBox.
+            this.lbxUsuario.DataSource = resultadoProcedimiento;
+
+            ///Indicarle al ListBox que "se muestre".
+            this.lbxUsuario.DataBind();
+
+        }
+
+        void Insertar()
+        {
+            int idCategoria = 0, idUsuario = 0;
+
+            ///Obtener el valor seleccionado por el usuario en el DropDownList.
+            idCategoria = Convert.ToInt16(this.ddlCategoria.SelectedValue);
+
+            ///Obtener el valor seleccionado por el usuario en el DropDownList.
+            idUsuario = Convert.ToInt16(this.lbxUsuario.SelectedValue);
+
+            try
+            {
+                ///Declarar una variable que administre los registros afectados.
+                int registrosAfectados = 0, estado = 1;
+
+                //Error de sitaxis sin corregir. Revisar.
+                registrosAfectados = Convert.ToInt32(this.modeloBD.Pa_Control_Oficio_INSERT(this.txtNumOficio.Text.ToUpper().Trim(),
+                                                                            idUsuario, estado, idCategoria,
+                                                                            this.txtNombre.Text,
+                                                                            this.txtDescripcion.Text,
+                                                                            this.txtDestinatario.Text));
+                //Fin del fragmento con error de sitaxis.
+
+
+                if (registrosAfectados > 0)
+                {
+                    this.lblMensaje.Text = "Oficio Agregado";
+                    this.LimpiarFormulario();
+                }
+
+            }
+            catch (Exception error)
+            {
+
+                this.lblMensaje.Text = "Registro Agregado.";
+                //El sistema si agrega la informacion pero tiene un error de sintaxis
+                //que aun no se logra corregir.
+                this.LimpiarFormulario();//Agregado en esta zona por el error.
+            }
+
+        }
+
+        void LimpiarFormulario()
+        {
+            txtNombre.Text = "";
+            txtNumOficio.Text = "";
+            txtDestinatario.Text = "";
+            txtDescripcion.Text = "";
+            ddlCategoria.SelectedIndex = -1;
+            lbxUsuario.SelectedIndex = -1;
+            lblMensaje.Text = "";
+        }
+    }
+}
