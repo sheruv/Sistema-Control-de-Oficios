@@ -6,10 +6,7 @@
             <center>
                 <br />
                 <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Names="Verdana" Font-Size="XX-Large" Font-Strikeout="False" ForeColor="#0033CC" Text="Agregar Oficio"></asp:Label></center>
-            <br />
-            <asp:Label ID="lblFechaInicio" runat="server" Text="Fecha Inicio:"></asp:Label>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="txtFechaInicio" runat="server"></asp:TextBox>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <br />
             <br />
             <asp:Label ID="Label5" runat="server" Text="Número de Oficio:"></asp:Label>
@@ -19,7 +16,7 @@
             <br />
             <asp:Label ID="Label6" runat="server" Text="Categoría:"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:DropDownList ID="ddlCategoria" runat="server" Height="17px" Width="136px">
+            <asp:DropDownList ID="ddlCategoria" runat="server" Height="17px" Width="136px" DataTextField="Nom_Categoria" DataValueField="Id_Categoria">
             </asp:DropDownList>
             <br />
             <br />
@@ -33,16 +30,12 @@
             <br />
             <asp:Label ID="Label4" runat="server" Text="Destinatario:"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="txtDestinatario" runat="server" Width="378px"></asp:TextBox>
+            <asp:TextBox ID="txtDestinatario" runat="server" Width="370px"></asp:TextBox>
             <br />
             <br />
             <asp:Label ID="lblUsuario" runat="server" Text="Usuario:"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="txtUsuario" runat="server" Width="385px"></asp:TextBox>
-            <br />
-            <br />
-            Fecha Vencimiento:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Label ID="lblFechaVence" runat="server" Text="--/--/----"></asp:Label>
+            <asp:ListBox ID="lbxUsuario" runat="server" DataTextField="Nombre" DataValueField="Id_Usuario" Height="73px" Width="389px"></asp:ListBox>
             <br />
             <br />
             <asp:Label ID="Label2" runat="server" Text="Estado:"></asp:Label>
@@ -50,8 +43,11 @@
             <asp:Label ID="lblEstado" runat="server" Text="Pendiente"></asp:Label>
             <br />
             <br />
+            <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+            <br />
+            <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnAgregar" runat="server" CssClass="btn btn-primary" style="margin-left: 0px" Text="Agregar" Width="137px" />
+            <asp:Button ID="btnAgregar" runat="server" CssClass="btn btn-primary" style="margin-left: 0px" Text="Agregar" Width="137px" OnClick="btnAgregar_Click" />
             <br />
             <br />
         </div>
