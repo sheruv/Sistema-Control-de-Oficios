@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [BD_Control_Oficios]    Script Date: 22/7/2019 7:46:20 p. m. ******/
+/****** Object:  Database [BD_Control_Oficios]    Script Date: 19/8/2019 1:17:30 a. m. ******/
 CREATE DATABASE [BD_Control_Oficios]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -80,7 +80,7 @@ ALTER DATABASE [BD_Control_Oficios] SET QUERY_STORE = OFF
 GO
 USE [BD_Control_Oficios]
 GO
-/****** Object:  UserDefinedFunction [dbo].[Fn_Siguiente_Codigo]    Script Date: 22/7/2019 7:46:21 p. m. ******/
+/****** Object:  UserDefinedFunction [dbo].[Fn_Siguiente_Codigo]    Script Date: 19/8/2019 1:17:35 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -118,7 +118,7 @@ BEGIN
 END
 
 GO
-/****** Object:  Table [dbo].[Categoria]    Script Date: 22/7/2019 7:46:21 p. m. ******/
+/****** Object:  Table [dbo].[Categoria]    Script Date: 19/8/2019 1:17:35 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -132,7 +132,7 @@ CREATE TABLE [dbo].[Categoria](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Control_Oficio]    Script Date: 22/7/2019 7:46:22 p. m. ******/
+/****** Object:  Table [dbo].[Control_Oficio]    Script Date: 19/8/2019 1:17:36 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -153,7 +153,7 @@ CREATE TABLE [dbo].[Control_Oficio](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Estado]    Script Date: 22/7/2019 7:46:22 p. m. ******/
+/****** Object:  Table [dbo].[Estado]    Script Date: 19/8/2019 1:17:36 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -167,7 +167,7 @@ CREATE TABLE [dbo].[Estado](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Tipo_Usuario]    Script Date: 22/7/2019 7:46:22 p. m. ******/
+/****** Object:  Table [dbo].[Tipo_Usuario]    Script Date: 19/8/2019 1:17:36 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -181,7 +181,7 @@ CREATE TABLE [dbo].[Tipo_Usuario](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Usuario]    Script Date: 22/7/2019 7:46:22 p. m. ******/
+/****** Object:  Table [dbo].[Usuario]    Script Date: 19/8/2019 1:17:36 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -196,6 +196,25 @@ CREATE TABLE [dbo].[Usuario](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+INSERT [dbo].[Categoria] ([Id_Categoria], [Nom_Categoria]) VALUES (1, N'Aceras')
+INSERT [dbo].[Categoria] ([Id_Categoria], [Nom_Categoria]) VALUES (2, N'Limpieza de Lote')
+INSERT [dbo].[Categoria] ([Id_Categoria], [Nom_Categoria]) VALUES (3, N'Administrativo')
+INSERT [dbo].[Control_Oficio] ([Id_Oficio], [Id_Usuario], [Id_Estado], [Id_Categoria], [Nombre], [Descripcion], [Destinatario], [Fecha_Inicio], [Fecha_Vence]) VALUES (N'IG0012019', 2, 1, 1, N'Construccion Completa de Acera.', N'Construccion de 100 m2 de acera en frente de calle', N'Cesar D.', CAST(N'2019-08-18T15:30:10.300' AS DateTime), CAST(N'2019-09-17T15:30:10.300' AS DateTime))
+INSERT [dbo].[Control_Oficio] ([Id_Oficio], [Id_Usuario], [Id_Estado], [Id_Categoria], [Nombre], [Descripcion], [Destinatario], [Fecha_Inicio], [Fecha_Vence]) VALUES (N'IG0022019', 2, 1, 2, N'Limpieza parcial de lote baldio.', N'Limpieza parcial de lote baldio contiguo a casa de', N'Meribeth Brenes', CAST(N'2019-08-18T15:37:04.517' AS DateTime), CAST(N'2019-09-02T15:37:04.517' AS DateTime))
+INSERT [dbo].[Control_Oficio] ([Id_Oficio], [Id_Usuario], [Id_Estado], [Id_Categoria], [Nombre], [Descripcion], [Destinatario], [Fecha_Inicio], [Fecha_Vence]) VALUES (N'IG0032019', 4, 1, 3, N'Carta Alcaldia', N'Carta elevada al alcalde para control interno.', N'Alcalde.', CAST(N'2019-08-18T20:20:40.503' AS DateTime), CAST(N'2019-08-28T20:20:40.503' AS DateTime))
+INSERT [dbo].[Control_Oficio] ([Id_Oficio], [Id_Usuario], [Id_Estado], [Id_Categoria], [Nombre], [Descripcion], [Destinatario], [Fecha_Inicio], [Fecha_Vence]) VALUES (N'IG0042019', 1, 1, 2, N'Limpieza lotes Perú', N'Limpieza a cargo de la cuadrilla municipal.', N'Plantel Municipal', CAST(N'2019-08-18T20:23:49.170' AS DateTime), CAST(N'2019-09-02T20:23:49.170' AS DateTime))
+INSERT [dbo].[Control_Oficio] ([Id_Oficio], [Id_Usuario], [Id_Estado], [Id_Categoria], [Nombre], [Descripcion], [Destinatario], [Fecha_Inicio], [Fecha_Vence]) VALUES (N'IG0052019', 3, 1, 1, N'Reparacion de Acera', N'Reparacion de aceras en mal estado del canton.', N'Inspeccion General', CAST(N'2019-08-18T20:30:33.480' AS DateTime), CAST(N'2019-09-17T20:30:33.480' AS DateTime))
+INSERT [dbo].[Control_Oficio] ([Id_Oficio], [Id_Usuario], [Id_Estado], [Id_Categoria], [Nombre], [Descripcion], [Destinatario], [Fecha_Inicio], [Fecha_Vence]) VALUES (N'IG0062019', 2, 1, 3, N'Solicitud de presupuesto anual.', N'Solicitud del presupuesto anual del departamento p', N'Inspeccion General', CAST(N'2019-08-18T20:35:24.970' AS DateTime), CAST(N'2019-08-28T20:35:24.970' AS DateTime))
+INSERT [dbo].[Control_Oficio] ([Id_Oficio], [Id_Usuario], [Id_Estado], [Id_Categoria], [Nombre], [Descripcion], [Destinatario], [Fecha_Inicio], [Fecha_Vence]) VALUES (N'IG0072019', 2, 1, 2, N'Respuesta a contribuyente sobre limpieza de lote.', N'Respuesta sobre la finalización de la limpieza del', N'Adriana Jimenez', CAST(N'2019-08-18T20:37:54.050' AS DateTime), CAST(N'2019-09-02T20:37:54.050' AS DateTime))
+INSERT [dbo].[Control_Oficio] ([Id_Oficio], [Id_Usuario], [Id_Estado], [Id_Categoria], [Nombre], [Descripcion], [Destinatario], [Fecha_Inicio], [Fecha_Vence]) VALUES (N'IG0082019', 4, 1, 3, N'Compra de cascos para motocicleta.', N'Solicitud de presupuesto para compra de cascos par', N'Tesoreria.', CAST(N'2019-08-19T00:51:57.417' AS DateTime), CAST(N'2019-08-29T00:51:57.417' AS DateTime))
+INSERT [dbo].[Estado] ([Id_Estado], [Nom_Estado]) VALUES (1, N'Pendiente')
+INSERT [dbo].[Estado] ([Id_Estado], [Nom_Estado]) VALUES (2, N'Finalizado')
+INSERT [dbo].[Tipo_Usuario] ([Id_Tipo_Usuario], [Nom_Tipo_Usuario]) VALUES (1, N'Inspector')
+INSERT [dbo].[Tipo_Usuario] ([Id_Tipo_Usuario], [Nom_Tipo_Usuario]) VALUES (2, N'Jefatura')
+INSERT [dbo].[Usuario] ([Id_Usuario], [Id_Tipo_Usuario], [Nombre]) VALUES (1, 1, N'Sherman')
+INSERT [dbo].[Usuario] ([Id_Usuario], [Id_Tipo_Usuario], [Nombre]) VALUES (2, 2, N'Cristian')
+INSERT [dbo].[Usuario] ([Id_Usuario], [Id_Tipo_Usuario], [Nombre]) VALUES (3, 1, N'Meribeth')
+INSERT [dbo].[Usuario] ([Id_Usuario], [Id_Tipo_Usuario], [Nombre]) VALUES (4, 1, N'Bricet')
 ALTER TABLE [dbo].[Control_Oficio]  WITH CHECK ADD  CONSTRAINT [FK_Control_Oficio_Categoria] FOREIGN KEY([Id_Categoria])
 REFERENCES [dbo].[Categoria] ([Id_Categoria])
 GO
@@ -216,7 +235,39 @@ REFERENCES [dbo].[Tipo_Usuario] ([Id_Tipo_Usuario])
 GO
 ALTER TABLE [dbo].[Usuario] CHECK CONSTRAINT [FK_Tipo_Usuario_Usuario]
 GO
-/****** Object:  StoredProcedure [dbo].[Pa_Categoria_INSERT]    Script Date: 22/7/2019 7:46:22 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[Pa_Categoria_DELETE]    Script Date: 19/8/2019 1:17:36 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Pa_Categoria_DELETE] 
+	--Parametros
+	@Id_Categoria int
+AS
+BEGIN
+	
+	BEGIN TRANSACTION
+		
+		DELETE Categoria WHERE Id_Categoria = @Id_Categoria
+
+	IF @@ERROR = 0
+		BEGIN
+		COMMIT TRANSACTION
+		SELECT 'Registro Borrado'
+		END
+	ELSE
+		BEGIN
+		ROLLBACK TRANSACTION
+		SELECT 'ERROR, Verifique los datos'
+		END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[Pa_Categoria_INSERT]    Script Date: 19/8/2019 1:17:36 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -229,19 +280,17 @@ GO
 CREATE PROCEDURE [dbo].[Pa_Categoria_INSERT] 
 	
 	--Parametros.
-	@Id_Categoria int,
 	@Nom_Categoria varchar(50)
 
 AS
 BEGIN
 	BEGIN TRANSACTION
-
+	DECLARE
+		@Id_Categoria int
 	SET
 		@Id_Categoria = (SELECT dbo.Fn_Siguiente_Codigo('Categoria'))
-	SET
-		@Nom_Categoria = (SELECT Nom_Categoria FROM Categoria)
 				
-	INSERT INTO Tipo_Usuario VALUES(@Id_Categoria, @Nom_Categoria)
+	INSERT INTO Categoria VALUES(@Id_Categoria, @Nom_Categoria)
 
 	IF @@ERROR = 0
 		BEGIN
@@ -255,7 +304,250 @@ BEGIN
 		END
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Pa_Estado_INSERT]    Script Date: 22/7/2019 7:46:22 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[Pa_Categoria_SELECT]    Script Date: 19/8/2019 1:17:36 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Pa_Categoria_SELECT] 
+	--Parametros
+	@Llave_Primaria int
+AS
+BEGIN
+	SELECT * FROM Categoria WHERE Id_Categoria =  CASE @Llave_Primaria
+														WHEN -1 THEN Id_Categoria
+														ELSE @Llave_Primaria
+														END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[Pa_Categoria_UPDATE]    Script Date: 19/8/2019 1:17:36 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Pa_Categoria_UPDATE] 
+	--Parametros
+	@Id_Categoria int,
+	@Nom_Categoria varchar(50)
+AS
+BEGIN
+	
+	BEGIN TRANSACTION
+
+		UPDATE Categoria SET Nom_Categoria = @Nom_Categoria WHERE Id_Categoria = @Id_Categoria
+
+	IF @@ERROR = 0
+		BEGIN
+		COMMIT TRANSACTION
+		SELECT 'Registro Actualizado'
+		END
+	ELSE
+		BEGIN
+		ROLLBACK TRANSACTION
+		SELECT 'ERROR, Verifique los datos'
+		END
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[Pa_Control_Oficio_DELETE]    Script Date: 19/8/2019 1:17:36 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Pa_Control_Oficio_DELETE] 
+	--Parametros
+	@Id_Oficio varchar(50)
+AS
+BEGIN
+	
+	BEGIN TRANSACTION
+
+		DELETE Control_Oficio WHERE Id_Oficio = @Id_Oficio
+
+	IF @@ERROR = 0
+		BEGIN
+		COMMIT TRANSACTION
+		SELECT 'Registro Borrado'
+		END
+	ELSE
+		BEGIN
+		ROLLBACK TRANSACTION
+		SELECT 'ERROR, Verifique los datos'
+		END
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[Pa_Control_Oficio_INSERT]    Script Date: 19/8/2019 1:17:36 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Pa_Control_Oficio_INSERT] 
+	--Parametros
+	@Id_Oficio varchar(50),
+	@Id_Usuario int,
+	@Id_Estado int,
+	@Id_Categoria int,
+	@Nombre varchar(50),
+	@Descripcion varchar(50),
+	@Destinatario varchar(50)
+	
+AS
+BEGIN
+	
+	BEGIN TRANSACTION
+
+		DECLARE
+			@Fecha_Inicio datetime = (SELECT GETDATE()),
+			@Fecha_Vence datetime
+			
+			--Ciclo IF para determinar la fecha de vencimiento.
+			IF @Id_Categoria = 1
+				BEGIN
+					SET @Fecha_Vence = @Fecha_Inicio + 30
+				END
+			ELSE
+				BEGIN
+					IF @Id_Categoria = 2
+						BEGIN
+							SET @Fecha_Vence = @Fecha_Inicio + 15
+						END
+					ELSE
+						SET @Fecha_Vence = @Fecha_Inicio + 10
+				END
+			--Fin de ciclo IF	
+
+			INSERT INTO Control_Oficio VALUES (TRIM(@Id_Oficio), @Id_Usuario, @Id_Estado,
+												@Id_Categoria, @Nombre, @Descripcion,
+												@Destinatario, @Fecha_Inicio, @Fecha_Vence)
+
+	IF @@ERROR = 0
+		BEGIN
+		COMMIT TRANSACTION
+		SELECT 'Registro ingresado correctamente'
+		END
+	ELSE
+		BEGIN
+		ROLLBACK TRANSACTION
+		SELECT 'ERROR, Verifique los datos'
+		END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[Pa_Control_Oficio_SELECT]    Script Date: 19/8/2019 1:17:36 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Pa_Control_Oficio_SELECT] 
+	--Parametros
+	@Llave_Primaria varchar(50)
+AS
+BEGIN
+	SELECT * FROM Control_Oficio WHERE TRIM(Id_Oficio) = CASE TRIM(@Llave_Primaria)
+														WHEN '' THEN TRIM(Id_Oficio)
+														ELSE TRIM(@Llave_Primaria)
+														END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[Pa_Control_Oficio_UPDATE]    Script Date: 19/8/2019 1:17:37 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Pa_Control_Oficio_UPDATE] 
+	--Parametros
+	@Id_Oficio varchar(50),
+	@Id_Usuario int,
+	@Id_Categoria int,
+	@Nombre varchar(50),
+	@Descripcion varchar(50),
+	@Destinatario varchar(50)
+
+AS
+BEGIN
+	
+	BEGIN TRANSACTION
+
+		UPDATE Control_Oficio SET Id_Usuario = @Id_Usuario, Id_Categoria = @Id_Categoria,
+									Nombre = @Nombre, Descripcion = @Descripcion,
+									Destinatario = @Destinatario
+		WHERE Id_Oficio = @Id_Oficio
+
+	IF @@ERROR = 0
+		BEGIN
+		COMMIT TRANSACTION
+		SELECT 'Registro Actualizado'
+		END
+	ELSE
+		BEGIN
+		ROLLBACK TRANSACTION
+		SELECT 'ERROR, Verifique los datos'
+		END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[Pa_Estado_DELETE]    Script Date: 19/8/2019 1:17:37 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Pa_Estado_DELETE] 
+	--Parametros
+	@Id_Estado int
+AS
+BEGIN
+	
+	BEGIN TRANSACTION
+		
+		DELETE Estado WHERE Id_Estado = @Id_Estado
+
+	IF @@ERROR = 0
+		BEGIN
+		COMMIT TRANSACTION
+		SELECT 'Registro Borrado'
+		END
+	ELSE
+		BEGIN
+		ROLLBACK TRANSACTION
+		SELECT 'ERROR, Verifique los datos'
+		END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[Pa_Estado_INSERT]    Script Date: 19/8/2019 1:17:37 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -267,20 +559,19 @@ GO
 -- =============================================
 CREATE PROCEDURE [dbo].[Pa_Estado_INSERT] 
 	
-	--Parametros.
-	@Id_Estado int,
+	--Parametros.	
 	@Nom_Estado varchar(50)
 
 AS
 BEGIN
 	BEGIN TRANSACTION
-
+	
+	DECLARE
+		@Id_Estado int
 	SET
 		@Id_Estado = (SELECT dbo.Fn_Siguiente_Codigo('Estado'))
-	SET
-		@Nom_Estado = (SELECT Nom_Estado FROM Estado)
 				
-	INSERT INTO Tipo_Usuario VALUES(@Id_Estado, @Nom_Estado)
+	INSERT INTO Estado VALUES(@Id_Estado, @Nom_Estado)
 
 	IF @@ERROR = 0
 		BEGIN
@@ -294,7 +585,168 @@ BEGIN
 		END
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Pa_TipoUsuario_INSERT]    Script Date: 22/7/2019 7:46:22 p. m. ******/
+/****** Object:  StoredProcedure [dbo].[Pa_Estado_SELECT]    Script Date: 19/8/2019 1:17:37 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Pa_Estado_SELECT] 
+	--Parametros
+	@Llave_Primaria int
+AS
+BEGIN
+	SELECT * FROM Estado WHERE Id_Estado = CASE @Llave_Primaria
+														WHEN -1 THEN Id_Estado
+														ELSE @Llave_Primaria
+														END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[Pa_Estado_UPDATE]    Script Date: 19/8/2019 1:17:37 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Pa_Estado_UPDATE] 
+	--Parametros
+	@Id_Estado int,
+	@Nom_Estado varchar(50)
+AS
+BEGIN
+	
+	BEGIN TRANSACTION
+		
+		UPDATE Estado SET Nom_Estado = @Nom_Estado WHERE Id_Estado = @Id_Estado
+
+	IF @@ERROR = 0
+		BEGIN
+		COMMIT TRANSACTION
+		SELECT 'Registro Actualizado'
+		END
+	ELSE
+		BEGIN
+		ROLLBACK TRANSACTION
+		SELECT 'ERROR, Verifique los datos'
+		END
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[PA_MOSTARDATOS]    Script Date: 19/8/2019 1:17:37 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[PA_MOSTARDATOS] 
+	--Parametros
+	@LlavePrimaria int,
+	@Id_Oficio varchar(50)
+AS
+BEGIN
+
+		IF @LlavePrimaria = 1
+			SELECT Fecha_Inicio FROM Control_Oficio WHERE Id_Oficio = @Id_Oficio
+		ELSE
+			IF @LlavePrimaria = 2
+				SELECT Id_Categoria FROM Control_Oficio WHERE Id_Oficio = @Id_Oficio
+			ELSE
+				IF @LlavePrimaria = 3
+					SELECT Nombre FROM Control_Oficio WHERE Id_Oficio = @Id_Oficio
+				ELSE
+					IF @LlavePrimaria = 4
+						SELECT Descripcion FROM Control_Oficio WHERE Id_Oficio = @Id_Oficio
+					ELSE
+						IF @LlavePrimaria = 5
+							SELECT Destinatario FROM Control_Oficio WHERE Id_Oficio = @Id_Oficio
+						ELSE
+							IF @LlavePrimaria = 6
+								SELECT Id_Usuario FROM Control_Oficio WHERE Id_Oficio = @Id_Oficio
+							ELSE
+								IF @LlavePrimaria = 7
+									SELECT Fecha_Vence FROM Control_Oficio WHERE Id_Oficio = @Id_Oficio
+		
+END
+GO
+/****** Object:  StoredProcedure [dbo].[Pa_Tipo_Usuario_UPDATE]    Script Date: 19/8/2019 1:17:37 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Pa_Tipo_Usuario_UPDATE] 
+	--Parametros
+	@Id_Tipo_Usuario int,
+	@Nom_Tipo_Usuario varchar(50)
+AS
+BEGIN
+	
+	BEGIN TRANSACTION
+
+		UPDATE Tipo_Usuario SET Nom_Tipo_Usuario = @Nom_Tipo_Usuario WHERE Id_Tipo_Usuario = @Id_Tipo_Usuario
+
+	IF @@ERROR = 0
+		BEGIN
+		COMMIT TRANSACTION
+		SELECT 'Registro Actualizado'
+		END
+	ELSE
+		BEGIN
+		ROLLBACK TRANSACTION
+		SELECT 'ERROR, Verifique los datos'
+		END
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[Pa_TipoUsuario_DELETE]    Script Date: 19/8/2019 1:17:37 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Pa_TipoUsuario_DELETE] 
+	--Parametros
+	@Id_Tipo_Usuario int
+AS
+BEGIN
+	
+	BEGIN TRANSACTION
+
+		DELETE Tipo_Usuario WHERE Id_Tipo_Usuario = @Id_Tipo_Usuario
+
+	IF @@ERROR = 0
+		BEGIN
+		COMMIT TRANSACTION
+		SELECT 'Registro Borrado'
+		END
+	ELSE
+		BEGIN
+		ROLLBACK TRANSACTION
+		SELECT 'ERROR, Verifique los datos'
+		END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[Pa_TipoUsuario_INSERT]    Script Date: 19/8/2019 1:17:37 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -306,18 +758,17 @@ GO
 -- =============================================
 CREATE PROCEDURE [dbo].[Pa_TipoUsuario_INSERT] 
 	
-	--Parametros.
-	@Id_Tipo_Usuario int,
+	--Parametros.	
 	@Nom_Tipo_Usuario varchar(50)
 
 AS
 BEGIN
 	BEGIN TRANSACTION
 
+	DECLARE
+		@Id_Tipo_Usuario int
 	SET
 		@Id_Tipo_Usuario = (SELECT dbo.Fn_Siguiente_Codigo('Tipo_Usuario'))
-	SET
-		@Nom_Tipo_Usuario = (SELECT Nom_Tipo_Usuario FROM Tipo_Usuario)
 				
 	INSERT INTO Tipo_Usuario VALUES(@Id_Tipo_Usuario, @Nom_Tipo_Usuario)
 
@@ -333,8 +784,153 @@ BEGIN
 		END
 END
 GO
+/****** Object:  StoredProcedure [dbo].[Pa_TipoUsuario_SELECT]    Script Date: 19/8/2019 1:17:37 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Pa_TipoUsuario_SELECT] 
+	--Parametros
+	@Llave_Primaria int
+AS
+BEGIN
+	SELECT * FROM Tipo_Usuario WHERE Id_Tipo_Usuario = CASE @Llave_Primaria
+														WHEN -1 THEN Id_Tipo_Usuario
+														ELSE @Llave_Primaria
+														END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[Pa_Usuario_DELETE]    Script Date: 19/8/2019 1:17:37 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Pa_Usuario_DELETE] 
+	--Parametros
+	@Id_Usuario int
+AS
+BEGIN
+	
+	BEGIN TRANSACTION
+
+		DELETE Usuario WHERE Id_Usuario = @Id_Usuario
+
+	IF @@ERROR = 0
+		BEGIN
+		COMMIT TRANSACTION
+		SELECT 'Registro Borrado'
+		END
+	ELSE
+		BEGIN
+		ROLLBACK TRANSACTION
+		SELECT 'ERROR, Verifique los datos'
+		END
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[Pa_Usuario_INSERT]    Script Date: 19/8/2019 1:17:37 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Pa_Usuario_INSERT] 
+	-- Parametros	
+	@Id_Tipo_Usuario int,
+	@Nombre varchar(50)
+AS
+BEGIN
+	BEGIN TRANSACTION
+	
+	DECLARE
+		@Id_Usuario int
+	SET @Id_Usuario = (SELECT dbo.Fn_Siguiente_Codigo('Usuario'))
+
+	INSERT INTO Usuario VALUES (@Id_Usuario, @Id_Tipo_Usuario, @Nombre)
+
+	IF @@ERROR = 0
+		BEGIN
+		COMMIT TRANSACTION
+		SELECT 'Registro ingresado correctamente'
+		END
+	ELSE
+		BEGIN
+		ROLLBACK TRANSACTION
+		SELECT 'ERROR, Verifique los datos'
+		END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[Pa_Usuario_SELECT]    Script Date: 19/8/2019 1:17:37 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Pa_Usuario_SELECT] 
+	--Parametros
+	@Llave_Primaria int
+AS
+BEGIN
+	SELECT * FROM Usuario WHERE Id_Usuario = CASE @Llave_Primaria
+														WHEN -1 THEN Id_Usuario
+														ELSE @Llave_Primaria
+														END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[Pa_Usuario_UPDATE]    Script Date: 19/8/2019 1:17:37 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Pa_Usuario_UPDATE] 
+	--Parametros
+	@Id_Usuario int,
+	@Id_Tipo_Usuario int,
+	@Nombre varchar(50)
+AS
+BEGIN
+	
+	BEGIN TRANSACTION
+
+		UPDATE Usuario SET Id_Tipo_Usuario = @Id_Tipo_Usuario, Nombre = @Nombre WHERE Id_Usuario = @Id_Usuario
+
+	IF @@ERROR = 0
+		BEGIN
+		COMMIT TRANSACTION
+		SELECT 'Registro Actualizado'
+		END
+	ELSE
+		BEGIN
+		ROLLBACK TRANSACTION
+		SELECT 'ERROR, Verifique los datos'
+		END
+
+END
+GO
 USE [master]
 GO
 ALTER DATABASE [BD_Control_Oficios] SET  READ_WRITE 
 GO
-
